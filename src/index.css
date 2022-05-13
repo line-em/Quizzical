@@ -1,0 +1,131 @@
+/*base layout and styles*/
+
+:root {
+	/*colors*/
+	--white: #cddde8;
+	--black: #1b355a;
+	--teal: #69c7d8;
+	--green: #71e9a3;
+	--red: #cf4a44;
+	--shadow: 0 1px 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+
+	--deco: 0.25rem;
+	--tiny: 0.5rem;
+	--small: 1rem;
+	--large: 5rem;
+}
+
+[data-theme="dark"] {
+	--white: #1b355a;
+	--black: #cddde8;
+}
+
+::selection {
+	background: var(--red);
+	color: var(--black);
+}
+
+body {
+	background: var(--white);
+	color: var(--black);
+	font: 300 1rem/1.6 "Chivo", Helvetica, sans-serif;
+	overflow: hidden;
+	text-align: center;
+	padding: var(--small);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	margin: auto;
+	max-width: 55ch;
+}
+
+/*base elements*/
+
+:is(h1, h2, h3, h4, h5, h6) {
+	font-family: "Orelega One", sans-serif;
+	font-weight: 400;
+}
+
+h1 {
+	color: var(--teal);
+	font-size: calc(2rem + 2vw);
+	text-decoration: underline solid var(--deco) var(--black);
+}
+
+a {
+	color: var(--red);
+	text-decoration: dashed underline var(--black);
+	text-underline-offset: 0.3em;
+	font-weight: 600;
+	transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+	color: var(--black);
+	letter-spacing: 0.02rem;
+}
+
+.subtitle {
+	font-size: calc(0.7rem + 0.3vw);
+	font-weight: 300;
+	text-transform: lowercase;
+	margin-top: calc(-0.5rem - 0.5vw);
+}
+
+/*buttons*/
+
+button {
+	border: none;
+	padding: var(--tiny);
+}
+
+.start-button {
+	background: var(--teal);
+	color: var(--white);
+	font-size: calc(1rem + 0.5vw);
+	font-weight: 600;
+	border-radius: var(--tiny);
+	box-shadow: var(--shadow);
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	margin: calc(var(--tiny) + 1vw);
+}
+
+:is(.theme-button, .git-button) {
+	position: fixed;
+	border-radius: 50%;
+	z-index: 1;
+	display: flex;
+	color: var(--black);
+	background: var(--teal);
+	transition: all 300ms ease-in-out;
+	cursor: pointer;
+	box-shadow: var(--shadow);
+}
+
+.theme-button {
+	top: 1rem;
+	right: 1rem;
+}
+
+.git-button {
+	bottom: 1rem;
+	left: 1rem;
+}
+
+:is(.theme-button, .start-button, .git-button):hover:enabled {
+	background: var(--green);
+	transform: translateY(0.1rem);
+	box-shadow: var(--shadow), inset var(--shadow);
+}
+
+:is(.theme-button, .start-button, .git-button):active:enabled {
+	background: var(--red);
+	transform: translateY(0.25rem);
+}
