@@ -1,13 +1,27 @@
 import { React, useState } from "react";
-import { StartGame } from "./Components/StartGame";
+import StartScreen from "./Components/StartGame";
+import GameScreen from "./Components/GameScreen";
 import NavButtons from "./Components/NavButtons";
 
 function App() {
+	const [gameStarted, setGameStarted] = useState(false);
+
+	const startGame = () => {
+		setGameStarted(!gameStarted);
+		document.getElementById("app").classList.toggle("center");
+		document.getElementById("app").classList.toggle("whole-grid");
+	};
+	// {/* {FIXME: Add Link to Github Repository on NavButtons} */}
+
 	return (
 		<main>
-			<div className="App">
+			<div className="center" id="app">
 				<NavButtons />
-				<StartGame />
+				{gameStarted ? (
+					<GameScreen startGame={startGame} />
+				) : (
+					<StartScreen startGame={startGame} />
+				)}
 			</div>
 		</main>
 	);

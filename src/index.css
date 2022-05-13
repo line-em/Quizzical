@@ -1,23 +1,42 @@
+/*************************/
+/* index
+1. Base styles, root, specific selectors like ::selection
+2. Pure elements styles
+3. Classes styles (cascading - so it overrides the previous base if necessary)
+4. Buttons have their own section, following the same pattern
+5. Utilities to override the base styles
+6. The Background is coded on IconBackgroundStyles.css
+/*************************/
+
+/*************************/
 /*base layout and styles*/
+/*************************/
 
 :root {
 	/*colors*/
 	--white: #cddde8;
 	--black: #1b355a;
-	--teal: #69c7d8;
-	--green: #71e9a3;
+	--teal: #4da4a6;
+	--green: #50bd7d;
 	--red: #cf4a44;
+	--transparency: #1b275aaa;
+	--more-transparency: #13215f99;
 	--shadow: 0 1px 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
 
 	--deco: 0.25rem;
 	--tiny: 0.5rem;
 	--small: 1rem;
+	--base: 2rem;
 	--large: 5rem;
 }
 
 [data-theme="dark"] {
 	--white: #1b355a;
 	--black: #cddde8;
+	--teal: #69c7d8;
+	--green: #71e9a3;
+	--transparency: #cddde8c1;
+	--more-transparency: #cddde89b;
 }
 
 ::selection {
@@ -28,24 +47,79 @@
 body {
 	background: var(--white);
 	color: var(--black);
-	font: 300 1rem/1.6 "Chivo", Helvetica, sans-serif;
+	font: 300 1rem/1.5 "Chivo", Helvetica, sans-serif;
 	overflow: hidden;
 	text-align: center;
 	padding: var(--small);
 }
 
 main {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-	margin: auto;
-	max-width: 55ch;
+	display: grid;
+	grid-template-columns:
+		minmax(var(--deco), 1fr)
+		[content] minmax(auto, calc(60ch + 1vw))
+		minmax(var(--deco), 1fr);
+	place-items: center;
+	height: 90vh;
+	margin: var(--small);
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
 }
 
+.center {
+	grid-column: content;
+}
+
+.whole-grid {
+	grid-column: span 3;
+}
+
+.game-screen {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--small);
+	margin: var(--tiny) 0;
+}
+
+/*************************/
+/* layout styling */
+/*************************/
+
+.question-container {
+	width: 25%;
+	background-color: var(--transparency);
+	color: var(--white);
+	border-radius: var(--small);
+	padding: var(--small);
+	border: var(--teal) solid 1px;
+	box-shadow: var(--shadow);
+}
+
+.question-container:hover {
+	border: var(--green) solid 1px;
+	background-color: var(--more-transparency);
+}
+
+.button-container {
+	border-top: var(--teal) solid 1px;
+	padding-top: var(--tiny);
+	margin-top: var(--tiny);
+}
+
+[data-theme="dark"] .button-container {
+	border-top: var(--red) solid 1px;
+}
+
+/* .game-screen > p:not(:first-child) {
+	margin-top: var(--small);
+} */
+
+/*************************/
 /*base elements*/
+/*************************/
 
 :is(h1, h2, h3, h4, h5, h6) {
 	font-family: "Orelega One", sans-serif;
@@ -71,42 +145,64 @@ a:hover {
 	letter-spacing: 0.02rem;
 }
 
+/*************************/
+/* class styles */
+/*************************/
+
 .subtitle {
 	font-size: calc(0.7rem + 0.3vw);
 	font-weight: 300;
 	text-transform: lowercase;
-	margin-top: calc(-0.5rem - 0.5vw);
 }
 
+.question {
+	font-size: calc(0.8rem + 0.2vw);
+	font-weight: 600;
+}
+
+/*************************/
 /*buttons*/
+/*************************/
 
 button {
 	border: none;
 	padding: var(--tiny);
-}
-
-.start-button {
-	background: var(--teal);
-	color: var(--white);
-	font-size: calc(1rem + 0.5vw);
-	font-weight: 600;
-	border-radius: var(--tiny);
 	box-shadow: var(--shadow);
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+}
+
+.start-button {
+	border-radius: var(--tiny);
 	margin: calc(var(--tiny) + 1vw);
+	background: var(--teal);
+	color: var(--white);
+	font-size: calc(1rem + 0.3vw);
+	font-weight: 600;
+}
+
+.choice-button {
+	border-radius: var(--small);
+	margin: calc(var(--deco) + 0.2vw) calc(var(--deco) + 0.5vw);
+	font-size: calc(0.7rem + 0.2vw);
+	font-weight: 600;
+	/* background-color: var(--white); */
+	background-color: var(--transparency);
+	color: var(--white);
+}
+
+[data-theme="dark"] .choice-button {
+	background-color: var(--black);
+	color: var(--white);
 }
 
 :is(.theme-button, .git-button) {
-	position: fixed;
 	border-radius: 50%;
+	position: fixed;
 	z-index: 1;
-	display: flex;
+	display: inline-flex;
 	color: var(--black);
 	background: var(--teal);
-	transition: all 300ms ease-in-out;
-	cursor: pointer;
-	box-shadow: var(--shadow);
 }
 
 .theme-button {
@@ -119,13 +215,68 @@ button {
 	left: 1rem;
 }
 
-:is(.theme-button, .start-button, .git-button):hover:enabled {
+:is(.theme-button, .start-button, .git-button, .choice-button):hover:enabled {
 	background: var(--green);
 	transform: translateY(0.1rem);
 	box-shadow: var(--shadow), inset var(--shadow);
 }
 
-:is(.theme-button, .start-button, .git-button):active:enabled {
+:is(.theme-button, .start-button, .git-button, .choice-button):active:enabled {
 	background: var(--red);
 	transform: translateY(0.25rem);
+}
+
+/*************************/
+/*utilities*/
+/*************************/
+
+.neg-margin-top {
+	margin-top: calc(-0.5rem - 0.5vw);
+}
+
+/*************************/
+/*media queries*/
+/*************************/
+@media screen and (max-width: 1000px) {
+	main {
+		height: 95vh;
+		overflow-y: scroll;
+		scroll-behavior: smooth;
+		scrollbar-width: thin;
+		scroll-padding: var(--large);
+		scrollbar-color: var(--green) var(--transparency);
+	}
+
+	.game-screen {
+		flex-direction: column;
+	}
+
+	.question-container:first-of-type {
+		margin-top: var(--small);
+	}
+
+	.question-container {
+		width: 75%;
+	}
+}
+
+@media (max-width: 350px) {
+	.question-container {
+		width: 95%;
+	}
+
+	:is(.theme-button, .git-button) {
+		position: relative;
+		margin: 0 var(--deco);
+		top: auto;
+		bottom: auto;
+		left: auto;
+		right: auto;
+	}
+}
+
+@media screen {
+	main {
+		scrollbar-width: none;
+	}
 }
