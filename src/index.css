@@ -23,6 +23,7 @@
 	--more-transparency: #13215f99;
 	--shadow: 0 1px 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
 
+	--transition: all 0.18s cubic-bezier(0.77, 0, 0.175, 1);
 	--deco: 0.25rem;
 	--tiny: 0.5rem;
 	--small: 1rem;
@@ -50,7 +51,6 @@ body {
 	font: 300 1rem/1.5 "Chivo", Helvetica, sans-serif;
 	overflow: hidden;
 	text-align: center;
-	padding: var(--small);
 }
 
 main {
@@ -60,7 +60,7 @@ main {
 		[content] minmax(auto, calc(60ch + 1vw))
 		minmax(var(--deco), 1fr);
 	place-items: center;
-	height: 90vh;
+	height: 95vh;
 	margin: var(--small);
 	overflow-y: scroll;
 	scroll-behavior: smooth;
@@ -88,6 +88,13 @@ main {
 /* layout styling */
 /*************************/
 
+.customize-container {
+	border: var(--teal) solid 1px;
+	border-radius: var(--small);
+	background: var(--white);
+	transition: all 500ms ease;
+}
+
 .question-container {
 	width: 25%;
 	background-color: var(--transparency);
@@ -95,12 +102,13 @@ main {
 	border-radius: var(--small);
 	padding: var(--small);
 	border: var(--teal) solid 1px;
-	box-shadow: var(--shadow);
+	transition: var(--transition);
 }
 
 .question-container:hover {
 	border: var(--green) solid 1px;
 	background-color: var(--more-transparency);
+	transition: var(--transition);
 }
 
 .button-container {
@@ -112,10 +120,6 @@ main {
 [data-theme="dark"] .button-container {
 	border-top: var(--red) solid 1px;
 }
-
-/* .game-screen > p:not(:first-child) {
-	margin-top: var(--small);
-} */
 
 /*************************/
 /*base elements*/
@@ -137,12 +141,30 @@ a {
 	text-decoration: dashed underline var(--black);
 	text-underline-offset: 0.3em;
 	font-weight: 600;
-	transition: all 0.2s ease-in-out;
+	transition: var(--transition);
 }
 
 a:hover {
 	color: var(--black);
 	letter-spacing: 0.02rem;
+}
+
+input {
+	display: block;
+	box-shadow: var(--shadow);
+}
+
+input[type="range"] {
+	accent-color: var(--red);
+	margin: auto;
+	padding: var(--tiny);
+}
+
+select {
+	display: block;
+	box-shadow: var(--shadow);
+	margin: auto;
+	padding: var(--deco);
 }
 
 /*************************/
@@ -169,16 +191,24 @@ button {
 	padding: var(--tiny);
 	box-shadow: var(--shadow);
 	cursor: pointer;
-	transition: all 0.2s ease-in-out;
+	transition: var(--transition);
 }
 
-.start-button {
+.start-button,
+.accent-button {
 	border-radius: var(--tiny);
-	margin: calc(var(--tiny) + 1vw);
-	background: var(--teal);
+	margin: var(--tiny) calc(var(--tiny) + 1vw) var(--small) calc(var(--tiny) + 1vw);
 	color: var(--white);
 	font-size: calc(1rem + 0.3vw);
 	font-weight: 600;
+}
+
+.start-button {
+	background: var(--red);
+}
+
+.accent-button {
+	background: var(--teal);
 }
 
 .choice-button {
@@ -188,11 +218,6 @@ button {
 	font-weight: 600;
 	/* background-color: var(--white); */
 	background-color: var(--transparency);
-	color: var(--white);
-}
-
-[data-theme="dark"] .choice-button {
-	background-color: var(--black);
 	color: var(--white);
 }
 
