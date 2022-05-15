@@ -10,7 +10,60 @@
 .icon-background * {
 	width: 25%;
 	position: absolute;
+	animation: light-floating 3s ease-in-out infinite;
 }
+
+/*************************/
+/*animations*/
+/*************************/
+
+.icon-background *:nth-of-type(odd) {
+	animation: light-floating 4s ease-in-out infinite alternate;
+}
+
+.icon-background *:nth-of-type(3n) {
+	animation: light-floating 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+}
+
+[data-theme="dark"].icon-background * {
+	animation: floating 3s ease-in-out infinite;
+}
+
+[data-theme="dark"].icon-background *:nth-of-type(odd) {
+	animation: floating 4s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"].icon-background *:nth-of-type(3n) {
+	animation: floating 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+}
+
+@keyframes floating {
+	0%,
+	100% {
+		transform: translateY(0);
+		filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.7));
+	}
+	50% {
+		transform: translateY(-0.5rem);
+		filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.7));
+	}
+}
+
+@keyframes light-floating {
+	0%,
+	100% {
+		transform: translateY(0);
+		filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+	}
+	50% {
+		transform: translateY(-0.5rem);
+		filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.3));
+	}
+}
+
+/*************************/
+/* positions */
+/*************************/
 
 .icon-background > *:nth-of-type(1) {
 	color: darkorange;
