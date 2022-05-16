@@ -60,7 +60,7 @@ main {
 		[content] minmax(auto, calc(60ch + 1vw))
 		minmax(var(--deco), 1fr);
 	place-items: center;
-	height: 95vh;
+	height: 99vh;
 	margin: var(--small);
 	overflow-y: scroll;
 	scroll-behavior: smooth;
@@ -78,7 +78,6 @@ main {
 .game-screen {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
 	justify-content: center;
 	gap: var(--small);
 	margin: var(--tiny) 0;
@@ -96,25 +95,24 @@ main {
 }
 
 .question-container {
-	width: 25%;
+	width: 20%;
 	background-color: var(--transparency);
 	color: var(--white);
 	border-radius: var(--small);
-	padding: var(--small);
 	border: var(--teal) solid 1px;
 	transition: var(--transition);
-}
-
-.question-container:hover {
-	border: var(--green) solid 1px;
-	background-color: var(--more-transparency);
-	transition: var(--transition);
+	display: flex;
+	flex-direction: column;
 }
 
 .button-container {
+	padding: var(--tiny) 0;
+	margin: var(--tiny);
 	border-top: var(--teal) solid 1px;
-	padding-top: var(--tiny);
-	margin-top: var(--tiny);
+	display: grid;
+	grid-template-columns: repeat(2, minmax(var(--base), 1fr));
+	overflow-wrap: break-word;
+	hyphens: manual;
 }
 
 [data-theme="dark"] .button-container {
@@ -140,7 +138,7 @@ a {
 	color: var(--red);
 	text-decoration: dashed underline var(--black);
 	text-underline-offset: 0.3em;
-	font-weight: 600;
+	font-weight: 700;
 	transition: var(--transition);
 }
 
@@ -178,8 +176,16 @@ select {
 }
 
 .question {
-	font-size: calc(0.8rem + 0.2vw);
-	font-weight: 600;
+	font-size: calc(0.9rem + 0.2vw);
+	font-weight: 700;
+	padding: var(--small);
+	background: var(--transparency);
+	border-radius: var(--small) var(--small) 0 0;
+	height: 50%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /*************************/
@@ -197,10 +203,10 @@ button {
 .start-button,
 .accent-button {
 	border-radius: var(--tiny);
-	margin: var(--tiny) calc(var(--tiny) + 1vw) var(--small) calc(var(--tiny) + 1vw);
+	margin: var(--tiny) calc(var(--tiny) + 1vw) var(--base) calc(var(--tiny) + 1vw);
 	color: var(--white);
 	font-size: calc(1rem + 0.3vw);
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .start-button {
@@ -215,8 +221,7 @@ button {
 	border-radius: var(--small);
 	margin: calc(var(--deco) + 0.2vw) calc(var(--deco) + 0.5vw);
 	font-size: calc(0.7rem + 0.2vw);
-	font-weight: 600;
-	/* background-color: var(--white); */
+	font-weight: 700;
 	background-color: var(--transparency);
 	color: var(--white);
 }
@@ -250,13 +255,23 @@ button {
 	background: var(--red);
 	transform: translateY(0.25rem);
 }
-
 /*************************/
 /*utilities*/
 /*************************/
 
 .neg-margin-top {
 	margin-top: calc(-0.5rem - 0.5vw);
+}
+
+.y-separation {
+	margin: calc(var(--deco) + 0.5vw) 0;
+}
+
+.flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 /*************************/
@@ -270,10 +285,6 @@ button {
 		scrollbar-width: thin;
 		scroll-padding: var(--large);
 		scrollbar-color: var(--green) var(--transparency);
-	}
-
-	.game-screen {
-		flex-direction: column;
 	}
 
 	.question-container:first-of-type {

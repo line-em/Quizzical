@@ -8,7 +8,9 @@ import "./Helpers/IconBackgroundStyles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<IconBackground />
-		<App />
+		<>
+			<IconBackground />
+			<App />
+		</>
 	</React.StrictMode>
 );

@@ -4,6 +4,9 @@ function StartScreen(props) {
 	/*Show Customization*/
 	const [isCustomizationHidden, setIsCustomizationHidden] = useState(true);
 	const toggleCustomize = () => setIsCustomizationHidden(!isCustomizationHidden);
+	/*Customization*/
+	const [numOfQuestions, setNumOfQuestions] = useState("10");
+	const [difficulty, setDifficulty] = useState("easy");
 
 	const customizeStyles = {
 		opacity: isCustomizationHidden ? 0 : 1,
@@ -12,10 +15,6 @@ function StartScreen(props) {
 		padding: isCustomizationHidden ? 0 : "var(--small) 0 var(--base) 0",
 		margin: isCustomizationHidden ? 0 : "var(--base) 0"
 	};
-
-	/*Customization*/
-	const [numOfQuestions, setNumOfQuestions] = useState("10");
-	const [difficulty, setDifficulty] = useState("easy");
 
 	const handleNumOfQuestions = (e) => {
 		console.log(numOfQuestions);

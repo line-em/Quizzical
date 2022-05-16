@@ -1,22 +1,40 @@
-import { React, useEffect } from "react";
+import { React, useState } from "react";
 import QuestionBox from "./QuestionBox";
 
 function GameScreen(props) {
-	if (props.quizData.length > 0) {
-		console.log(props.quizData.questions);
+	function chooseAnswer(answer) {
+		props.setQuizData(
+			props.quizData.map((quiz) => {
+				if (quiz.id === answer.id) {
+					quiz.current_answer = answer;
+				}
+				return quiz;
+			})
+		);
+		console.log(props.quizData);
 	}
+
+	const quizQuestions = props.quizData.map((question) => {
+		return <QuestionBox chooseAnswer={chooseAnswer} key={question.id} {...question} />;
+	});
 
 	return (
 		<>
 			<div className="center">
 				<h1>Quizz Time!</h1>
 			</div>
-			<section className="game-screen">
-				<QuestionBox />
-			</section>
+			<section className="game-screen">{props.quizData && quizQuestions}</section>
+			{props.quizData && (
+				<p>
+					Correct Answers: {props.score} / {props.quizData.length}
+				</p>
+			)}
 			<div className="center">
+				<button className="accent-button" role="button" onClick={props.checkAnswer}>
+					Check Answers
+				</button>
 				<button className="start-button" role="button" onClick={props.resetGame}>
-					Submit Answers
+					Play Again!
 				</button>
 			</div>
 		</>
