@@ -1,9 +1,9 @@
 import { React, useState } from "react";
 
-function StartScreen(props) {
+function StartScreen({ updateCustomization }) {
 	/*Show Customization*/
 	const [isCustomizationHidden, setIsCustomizationHidden] = useState(true);
-	const toggleCustomize = () => setIsCustomizationHidden(!isCustomizationHidden);
+	// const toggleCustomize = () => setIsCustomizationHidden(!isCustomizationHidden);
 	/*Customization*/
 	const [numOfQuestions, setNumOfQuestions] = useState("10");
 	const [difficulty, setDifficulty] = useState("easy");
@@ -16,26 +16,21 @@ function StartScreen(props) {
 		margin: isCustomizationHidden ? 0 : "var(--base) 0"
 	};
 
-	const handleNumOfQuestions = (e) => {
-		console.log(numOfQuestions);
-		setNumOfQuestions(e.target.value);
-	};
-
-	const handleDifficulty = (e) => {
-		console.log(difficulty);
-		setDifficulty(e.target.value);
-	};
-
 	return (
 		<section className="start-screen">
 			<h1>Quizzical</h1>
-			<button className="accent-button" role="button" onClick={toggleCustomize}>
+			{/* <button className="accent-button" role="button" onClick={toggleCustomize}> */}
+			<button
+				className="accent-button"
+				role="button"
+				onClick={(e) => setIsCustomizationHidden(!isCustomizationHidden)}
+			>
 				Customize Game
 			</button>
 			<button
 				className="start-button"
 				role="button"
-				onClick={() => props.updateCustomization(numOfQuestions, difficulty)}
+				onClick={() => updateCustomization(numOfQuestions, difficulty)}
 			>
 				Start Game
 			</button>
@@ -50,12 +45,12 @@ function StartScreen(props) {
 					min="5"
 					max="20"
 					step={1}
-					onChange={handleNumOfQuestions}
+					onChange={(e) => setNumOfQuestions(e.target.value)}
 					value={numOfQuestions}
 				/>
 
 				<label htmlFor="difficulty">Difficulty:</label>
-				<select id="difficulty" onChange={handleDifficulty}>
+				<select id="difficulty" onChange={(e) => setDifficulty(e.target.value)}>
 					<option value="easy">Easy</option>
 					<option value="medium">Medium</option>
 					<option value="hard">Hard</option>

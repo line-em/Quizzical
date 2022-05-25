@@ -20,6 +20,7 @@ function QuestionBox(props) {
 			</button>
 		);
 	});
+
 	return (
 		<section className="question-container">
 			<p className="question">{props.question}</p>
