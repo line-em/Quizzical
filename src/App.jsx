@@ -1,10 +1,11 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, createElement } from "react";
 import { nanoid } from "nanoid";
 import StartScreen from "./Components/StartScreen";
 import Loading from "./Helpers/Loading";
 import GameScreen from "./Components/GameScreen";
 import NavButtons from "./Components/NavButtons";
 import Footer from "./Components/Footer";
+import { ThumbsDown } from "phosphor-react";
 
 function App() {
 	const [gameStarted, setGameStarted] = useState(false);
@@ -80,6 +81,9 @@ function App() {
 	function checkAnswers() {
 		updateScore();
 		console.log(disabled);
+		if (quizData.every((question) => question.is_correct === true)) {
+			alert("You win!");
+		}
 	}
 
 	function updateScore() {

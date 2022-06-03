@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import QuestionBox from "../Helpers/QuestionBox";
 
 function GameScreen(props) {
@@ -30,12 +30,7 @@ function GameScreen(props) {
 						Play Again!
 					</button>
 				) : (
-					<button
-						className="accent-button"
-						role="button"
-						onClick={props.checkAnswers}
-						disabled={props.disabled}
-					>
+					<button className="accent-button" role="button" onClick={props.checkAnswers}>
 						Check Answers
 					</button>
 				)}
