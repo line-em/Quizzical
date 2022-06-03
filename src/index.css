@@ -19,6 +19,7 @@
 	--teal: #4da4a6;
 	--green: #50bd7d;
 	--red: #cf4a44;
+	--red-wrong: rgb(167, 34, 34);
 	--transparency: #1b275aaa;
 	--more-transparency: #13215f99;
 	--shadow: 0 1px 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
@@ -259,7 +260,7 @@ button {
 button:disabled {
 	background-color: var(--transparency);
 	color: var(--white);
-	border: var(--teal) solid 1px;
+	border: none;
 	cursor: not-allowed;
 }
 /*************************/

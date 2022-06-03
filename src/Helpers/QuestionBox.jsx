@@ -3,16 +3,20 @@ import { React, useState } from "react";
 function QuestionBox(props) {
 	const handleStyles = (choice) => {
 		let selectedBgColor = null;
+		let opacity = 1;
 		if (props.disabled && props.current_answer === choice) {
 			props.is_correct
 				? (selectedBgColor = "var(--green)")
-				: (selectedBgColor = "var(--red)");
+				: (selectedBgColor = "var(--red-wrong)");
 		} else if (props.current_answer === choice) {
 			selectedBgColor = "var(--teal)";
+		} else if (props.disabled && props.current_answer !== choice) {
+			opacity = 0.7;
 		}
 
 		return {
-			backgroundColor: selectedBgColor
+			backgroundColor: selectedBgColor,
+			opacity: opacity
 		};
 	};
 
