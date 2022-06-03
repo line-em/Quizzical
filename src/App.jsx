@@ -11,7 +11,12 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [customization, setCustomization] = useState([]);
 	const [quizData, setQuizData] = useState([]);
-	// const [score, setScore] = useState(0);
+	const [disabled, setDisabled] = useState(false);
+	const [score, setScore] = useState(0);
+
+	if (quizData.length < 0) {
+		setGameStarted(false);
+	}
 
 	const updateCustomization = (numQuestions, category, difficulty) => {
 		setCustomization([numQuestions, category, difficulty]);
@@ -20,6 +25,7 @@ function App() {
 
 	const startGame = () => {
 		setGameStarted(!gameStarted);
+		setDisabled(false);
 	};
 
 	useEffect(() => {
@@ -42,7 +48,7 @@ function App() {
 							].sort(() => Math.random() - 0.5),
 							correct_answer: atob(quiz.correct_answer),
 							current_answer: "",
-							is_correct: false,
+							is_correct: null,
 							id: nanoid()
 						};
 					})
@@ -69,23 +75,21 @@ function App() {
 				}
 			})
 		);
-		console.log(quizData);
 	}
 
-	// function checkAnswers() {
-	// 	setQuizData(
-	// 		quizData.map((quiz) => {
-	// 			if (quiz.current_answer === quiz.correct_answer) {
-	// 				quiz.is_correct = true;
-	// 			}
-	// 			return quiz;
-	// 		})
-	// 	);
-	// }
+	function checkAnswers() {
+		updateScore();
+		console.log(disabled);
+	}
 
-	// function updateScore() {
-	// 	setScore(quizData.filter((quiz) => quiz.is_correct).length);
-	// }
+	function updateScore() {
+		if (quizData.every((question) => question.is_correct !== null)) {
+			setScore(quizData.filter((quiz) => quiz.is_correct).length);
+			setDisabled(true);
+		} else {
+			alert("Please answer all questions before checking your score.");
+		}
+	}
 
 	return (
 		<main>
@@ -102,9 +106,9 @@ function App() {
 						startGame={startGame}
 						quizData={quizData}
 						chooseAnswer={chooseAnswer}
-						// checkAnswers={checkAnswers}
-						// score={score}
-						// setQuizData={setQuizData}
+						checkAnswers={checkAnswers}
+						score={score}
+						disabled={disabled}
 					/>
 				)}
 				<Footer />

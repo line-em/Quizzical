@@ -5,6 +5,14 @@ function QuestionBox(props) {
 		backgroundColor: "var(--teal)"
 	};
 
+	const correct = {
+		backgroundColor: "var(--green)"
+	};
+
+	const incorrect = {
+		backgroundColor: "var(--red)"
+	};
+
 	const choices = props.all_answers.map((choice) => {
 		return (
 			<button
@@ -14,6 +22,7 @@ function QuestionBox(props) {
 				key={choice}
 				id={choice}
 				onClick={() => props.chooseAnswer(choice, props.id)}
+				disabled={props.disabled}
 			>
 				{props.correct_answer === choice ? "✔" : ""}
 				{choice}

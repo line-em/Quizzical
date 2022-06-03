@@ -245,15 +245,22 @@ button {
 	left: 1rem;
 }
 
-:is(.theme-button, .start-button, .git-button, .choice-button):hover:enabled {
+:is(.theme-button, .start-button, .git-button, .choice-button, .accent-button):hover:enabled {
 	background: var(--green);
 	transform: translateY(0.1rem);
 	box-shadow: var(--shadow), inset var(--shadow);
 }
 
 :is(.theme-button, .start-button, .git-button, .choice-button):active:enabled {
-	background: var(--red);
+	background: var(--black);
 	transform: translateY(0.25rem);
+}
+
+button:disabled {
+	background-color: var(--transparency);
+	color: var(--white);
+	border: var(--teal) solid 1px;
+	cursor: not-allowed;
 }
 /*************************/
 /*utilities*/

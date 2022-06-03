@@ -3,7 +3,14 @@ import QuestionBox from "../Helpers/QuestionBox";
 
 function GameScreen(props) {
 	const quizQuestions = props.quizData.map((question) => {
-		return <QuestionBox chooseAnswer={props.chooseAnswer} key={question.id} {...question} />;
+		return (
+			<QuestionBox
+				disabled={props.disabled}
+				chooseAnswer={props.chooseAnswer}
+				key={question.id}
+				{...question}
+			/>
+		);
 	});
 
 	return (
@@ -12,18 +19,26 @@ function GameScreen(props) {
 				<h1>Quizz Time!</h1>
 			</div>
 			<section className="game-screen">{props.quizData && quizQuestions}</section>
-			{props.quizData && (
-				<p>
-					Correct Answers: {props.score} / {props.quizData.length}
-				</p>
+			{props.disabled && (
+				<>
+					<h2>Correct Answers:</h2> {props.score} / {props.quizData.length}
+				</>
 			)}
 			<div className="center">
-				{/* <button className="accent-button" role="button" onClick={props.checkAnswer}>
-					Check Answers
-				</button> */}
-				<button className="start-button" role="button" onClick={props.startGame}>
-					Play Again!
-				</button>
+				{props.disabled ? (
+					<button className="start-button" role="button" onClick={props.startGame}>
+						Play Again!
+					</button>
+				) : (
+					<button
+						className="accent-button"
+						role="button"
+						onClick={props.checkAnswers}
+						disabled={props.disabled}
+					>
+						Check Answers
+					</button>
+				)}
 			</div>
 		</>
 	);
