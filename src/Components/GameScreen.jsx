@@ -18,9 +18,9 @@ function GameScreen(props) {
 				</p>
 			)}
 			<div className="center">
-				<button className="accent-button" role="button" onClick={props.checkAnswer}>
+				{/* <button className="accent-button" role="button" onClick={props.checkAnswer}>
 					Check Answers
-				</button>
+				</button> */}
 				<button className="start-button" role="button" onClick={props.startGame}>
 					Play Again!
 				</button>

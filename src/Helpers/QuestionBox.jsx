@@ -9,21 +9,22 @@ function QuestionBox(props) {
 		return (
 			<button
 				className={`choice-button`}
-				style={props.current_answer ? selected : null}
+				style={props.current_answer === choice ? selected : null}
 				role="button"
 				key={choice}
-				id={props.id}
-				onClick={props.chooseAnswer(choice)}
+				id={choice}
+				onClick={() => props.chooseAnswer(choice, props.id)}
 			>
 				{props.correct_answer === choice ? "✔" : ""}
 				{choice}
 			</button>
 		);
 	});
-
 	return (
 		<section className="question-container">
-			<p className="question">{props.question}</p>
+			<p className="question" id={props.id}>
+				{props.question}
+			</p>
 			<article className="button-container">{choices}</article>
 		</section>
 	);
