@@ -21,7 +21,6 @@ function QuestionBox({
 		} else if (disabled && current_answer !== choice) {
 			opacity = 0.7;
 		}
-
 		return {
 			backgroundColor: feedbackColor,
 			opacity: opacity
@@ -44,6 +43,7 @@ function QuestionBox({
 			</button>
 		);
 	});
+
 	return (
 		<section className="question-container">
 			<p className="question" id={id}>

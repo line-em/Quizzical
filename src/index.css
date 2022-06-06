@@ -116,6 +116,18 @@ main {
 	hyphens: manual;
 }
 
+.check-answers-container {
+	width: 20%;
+	margin: var(--base) auto 1.5rem auto;
+	border-radius: var(--small);
+	background-color: var(--red);
+	transition: all 500ms ease;
+}
+
+.check-answers-container p {
+	padding-bottom: var(--deco);
+}
+
 [data-theme="dark"] .button-container {
 	border-top: var(--red) solid 1px;
 }

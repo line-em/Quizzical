@@ -13,6 +13,11 @@ function GameScreen(props) {
 		);
 	});
 
+	const scoreStyles = {
+		backgroundColor: props.score === props.quizData.length ? "var(--green)" : "var(--teal)",
+		color: "var(--white)"
+	};
+
 	return (
 		<>
 			<div className="center">
@@ -20,13 +25,21 @@ function GameScreen(props) {
 			</div>
 			<section className="game-screen">{props.quizData && quizQuestions}</section>
 			{props.disabled && (
-				<>
-					<h2>Correct Answers:</h2> {props.score} / {props.quizData.length}
-				</>
+				<div className="check-answers-container" style={scoreStyles}>
+					<h2>Correct Answers:</h2>
+					<p>
+						{props.score} / {props.quizData.length}
+					</p>
+				</div>
+			)}
+			{props.quizError && (
+				<div className="check-answers-container">
+					<h2>Please answer all questions!</h2>
+				</div>
 			)}
 			<div className="center">
 				{props.disabled ? (
-					<button className="start-button" role="button" onClick={props.startGame}>
+					<button className="start-button" role="button" onClick={props.playAgain}>
 						Play Again!
 					</button>
 				) : (

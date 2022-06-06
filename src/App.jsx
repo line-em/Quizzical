@@ -9,11 +9,12 @@ import { ThumbsDown } from "phosphor-react";
 
 function App() {
 	const [gameStarted, setGameStarted] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
 	const [customization, setCustomization] = useState([]);
 	const [quizData, setQuizData] = useState([]);
-	const [disabled, setDisabled] = useState(false);
 	const [score, setScore] = useState(0);
+	const [disabled, setDisabled] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [quizError, setQuizError] = useState(false);
 
 	if (quizData.length < 0) {
 		setGameStarted(false);
@@ -79,20 +80,21 @@ function App() {
 	}
 
 	function checkAnswers() {
-		updateScore();
-		console.log(disabled);
-		if (quizData.every((question) => question.is_correct === true)) {
-			alert("You win!");
-		}
-	}
-
-	function updateScore() {
 		if (quizData.every((question) => question.is_correct !== null)) {
 			setScore(quizData.filter((quiz) => quiz.is_correct).length);
 			setDisabled(true);
+			setQuizError(false);
 		} else {
-			alert("Please answer all questions before checking your score.");
+			setQuizError(true);
 		}
+	}
+
+	function playAgain() {
+		setQuizData([]);
+		setGameStarted(false);
+		setScore(0);
+		setDisabled(false);
+		setQuizError(false);
 	}
 
 	return (
@@ -109,8 +111,10 @@ function App() {
 					<GameScreen
 						startGame={startGame}
 						quizData={quizData}
+						quizError={quizError}
 						chooseAnswer={chooseAnswer}
 						checkAnswers={checkAnswers}
+						playAgain={playAgain}
 						score={score}
 						disabled={disabled}
 					/>
@@ -122,21 +126,3 @@ function App() {
 }
 
 export default App;
-
-// {/* {FIXME: Add Link to Github Repository on NavButtons} */}
-// 		{gameStarted ? (
-// 			<GameScreen
-// 				startGame={startGame}
-// 				quizData={quizData}
-// 				checkAnswers={checkAnswers}
-// 				score={score}
-// 				setQuizData={setQuizData}
-// 			/>
-// 		) : (
-// 			<>
-// 				<StartScreen updateCustomization={updateCustomization} />
-// 				<Footer />
-// 			</>
-// 		)}
-// 	</div>
-// </main>
