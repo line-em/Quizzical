@@ -33,6 +33,7 @@
 }
 
 [data-theme="dark"] {
+	--red-wrong: rgb(229, 104, 104);
 	--white: #1b355a;
 	--black: #cddde8;
 	--teal: #69c7d8;
@@ -118,7 +119,7 @@ main {
 
 .check-answers-container {
 	width: 20%;
-	margin: var(--base) auto 1.5rem auto;
+	margin: var(--base) auto auto;
 	border-radius: var(--small);
 	background-color: var(--red);
 	transition: all 500ms ease;
@@ -174,10 +175,22 @@ input[type="range"] {
 select {
 	display: block;
 	box-shadow: var(--shadow);
-	margin: auto;
-	padding: var(--deco);
+	margin: var(--deco) auto;
+	padding: var(--tiny);
+	border-radius: var(--base);
+	border: none;
 }
 
+select:focus {
+	color: var(--red);
+	outline: 1px solid var(--red-wrong);
+}
+
+hr {
+	border: none;
+	border-top: var(--teal) solid 1px;
+	margin: var(--small) auto;
+}
 /*************************/
 /* class styles */
 /*************************/
@@ -216,7 +229,7 @@ button {
 .start-button,
 .accent-button {
 	border-radius: var(--tiny);
-	margin: var(--tiny) calc(var(--tiny) + 1vw) var(--base) calc(var(--tiny) + 1vw);
+	margin: var(--base) auto;
 	color: var(--white);
 	font-size: calc(1rem + 0.3vw);
 	font-weight: 700;
@@ -275,6 +288,11 @@ button:disabled {
 	border: none;
 	cursor: not-allowed;
 }
+
+.start-margin {
+	margin: var(--tiny) calc(var(--tiny) + 1vw);
+}
+
 /*************************/
 /*utilities*/
 /*************************/

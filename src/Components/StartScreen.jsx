@@ -4,7 +4,7 @@ function StartScreen({ updateCustomization }) {
 	/*Show Customization*/
 	const [isCustomizationHidden, setIsCustomizationHidden] = useState(true);
 	/*Customization*/
-	const [numOfQuestions, setNumOfQuestions] = useState("10");
+	const [numOfQuestions, setNumOfQuestions] = useState("8");
 	const [difficulty, setDifficulty] = useState("easy");
 	const [category, setCategory] = useState("9");
 
@@ -20,14 +20,14 @@ function StartScreen({ updateCustomization }) {
 		<section className="start-screen">
 			<h1>Quizzical</h1>
 			<button
-				className="accent-button"
+				className="accent-button start-margin"
 				role="button"
 				onClick={(e) => setIsCustomizationHidden(!isCustomizationHidden)}
 			>
 				Customize
 			</button>
 			<button
-				className="start-button"
+				className="start-button start-margin"
 				role="button"
 				onClick={() => updateCustomization(numOfQuestions, category, difficulty)}
 			>
@@ -41,20 +41,20 @@ function StartScreen({ updateCustomization }) {
 					type="range"
 					name="num-of-questions"
 					id="num-of-questions"
-					min="5"
+					min="4"
 					max="20"
 					step={1}
 					onChange={(e) => setNumOfQuestions(e.target.value)}
 					value={numOfQuestions}
 				/>
-
+				<hr />
 				<label htmlFor="difficulty">Difficulty:</label>
 				<select id="difficulty" onChange={(e) => setDifficulty(e.target.value)}>
 					<option value="easy">Easy</option>
 					<option value="medium">Medium</option>
 					<option value="hard">Hard</option>
 				</select>
-
+				<hr />
 				<label htmlFor="category">Category:</label>
 				<select id="category" onChange={(e) => setCategory(e.target.value)}>
 					<option value="9">General Knowledge</option>
