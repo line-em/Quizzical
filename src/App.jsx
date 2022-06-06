@@ -32,7 +32,7 @@ function App() {
 
 	useEffect(() => {
 		setIsLoading(true);
-		setCustomization([10, "easy"]);
+
 		fetch(
 			`https://opentdb.com/api.php?amount=${customization[0]}&category=${customization[1]}&type=multiple&difficulty=${customization[2]}&encode=base64`
 		)
