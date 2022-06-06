@@ -338,6 +338,10 @@ button:disabled {
 	.question-container {
 		width: 75%;
 	}
+
+	.check-answers-container {
+		width: 75%;
+	}
 }
 
 @media (max-width: 350px) {
