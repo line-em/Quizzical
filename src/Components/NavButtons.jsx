@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Sun, Moon, GithubLogo, IconContext } from "phosphor-react";
+import { Sun, Moon, IconContext } from "phosphor-react";
 
 function NavButtons() {
 	// DARK OR LIGHT MODE //
@@ -25,10 +25,12 @@ function NavButtons() {
 				<button onClick={toggleTheme} className="theme-button" aria-hidden="true">
 					{theme === "dark" ? <Sun /> : <Moon />}
 				</button>
-				{/* {FIXME: Add Link to Github Repository} */}
-				<button className="git-button">
-					<GithubLogo />
-				</button>
+				<a className="git-button" href="https://github.com/line-em" target="_blank">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+						width={"24"}
+					/>
+				</a>
 			</IconContext.Provider>
 		</>
 	);

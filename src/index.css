@@ -267,11 +267,17 @@ button {
 }
 
 .git-button {
+	border: none;
+	padding: var(--tiny);
+	box-shadow: var(--shadow);
+	cursor: pointer;
+	transition: var(--transition);
 	bottom: 1rem;
 	left: 1rem;
 }
 
-:is(.theme-button, .start-button, .git-button, .choice-button, .accent-button):hover:enabled {
+:is(.theme-button, .start-button, .choice-button, .accent-button):hover:enabled,
+.git-button:hover {
 	background: var(--green);
 	transform: translateY(0.1rem);
 	box-shadow: var(--shadow), inset var(--shadow);
