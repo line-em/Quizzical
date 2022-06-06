@@ -11,7 +11,7 @@ function App() {
 	const [gameStarted, setGameStarted] = useState(false);
 	const [customization, setCustomization] = useState([]);
 	const [quizData, setQuizData] = useState([]);
-	const [score, setScore] = useState(0);
+	const [score, setScore] = useState(null);
 	const [disabled, setDisabled] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [quizError, setQuizError] = useState(false);
@@ -39,7 +39,6 @@ function App() {
 			.then((response) => response.json())
 			.then((data) => {
 				setIsLoading(false);
-				console.log(data);
 				setQuizData(
 					data.results.map((quiz) => {
 						return {
