@@ -7,6 +7,8 @@ If you do well in the quiz, you can get some nice **Confetti!**
 
 This is an open-ended Scrimba challenge.
 
+[Check out the live web app. ❤️](https://line-em.github.io/Quizzical/)
+
 ## Screenshots
 
 ![Screenshot](<public/quizzical%20(1).png>)
