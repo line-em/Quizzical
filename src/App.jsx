@@ -37,7 +37,6 @@ function App() {
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				setIsLoading(false);
 				setQuizData(
 					data.results.map((quiz) => {
 						return {
@@ -53,6 +52,7 @@ function App() {
 						};
 					})
 				);
+				setIsLoading(false);
 			})
 			.catch((err) => {
 				setIsLoading(false);
