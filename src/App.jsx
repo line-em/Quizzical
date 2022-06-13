@@ -81,6 +81,7 @@ function App() {
 					<GameScreen
 						startGame={startGame}
 						quizData={quizData}
+						setQuizData={setQuizData}
 						playAgain={playAgain}
 						score={score}
 						disabled={disabled}

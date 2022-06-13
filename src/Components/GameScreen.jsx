@@ -18,7 +18,7 @@ function GameScreen(props) {
 
 	function chooseAnswer(answer, targetId) {
 		props.setQuizData(
-			quizData.map((question) => {
+			props.quizData.map((question) => {
 				if (question.id === targetId) {
 					return {
 						...question,
