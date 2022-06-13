@@ -16,10 +16,12 @@
 	/*colors*/
 	--white: #cddde8;
 	--black: #1b355a;
-	--teal: #4da4a6;
-	--green: #50bd7d;
+	/* --teal: #4da4a6; */
+	--teal: #1d8385;
+	/* --green: #50bd7d; */
+	--green: #148743;
 	--red: #cf4a44;
-	--red-wrong: rgb(167, 34, 34);
+	--red-wrong: rgb(142, 35, 35);
 	--transparency: #1b275aaa;
 	--more-transparency: #13215f99;
 	--shadow: 0 1px 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
@@ -33,7 +35,7 @@
 }
 
 [data-theme="dark"] {
-	--red-wrong: rgb(229, 104, 104);
+	--red-wrong: rgb(242, 123, 123);
 	--white: #1b355a;
 	--black: #cddde8;
 	--teal: #69c7d8;
@@ -110,7 +112,7 @@ main {
 .button-container {
 	padding: var(--tiny) 0;
 	margin: var(--tiny);
-	border-top: var(--teal) solid 1px;
+	border-top: var(--teal) solid 2px;
 	display: grid;
 	grid-template-columns: repeat(2, minmax(var(--base), 1fr));
 	overflow-wrap: break-word;
@@ -120,9 +122,15 @@ main {
 .check-answers-container {
 	width: 20%;
 	margin: var(--base) auto auto;
+	padding: var(--tiny);
 	border-radius: var(--small);
 	background-color: var(--red);
 	transition: all 500ms ease;
+	color: var(--white);
+}
+
+[data-theme="dark"] .check-answers-container {
+	color: var(--black);
 }
 
 .check-answers-container p {
@@ -130,7 +138,7 @@ main {
 }
 
 [data-theme="dark"] .button-container {
-	border-top: var(--red) solid 1px;
+	border-top: var(--red) solid 2px;
 }
 
 /*************************/
@@ -152,8 +160,11 @@ a {
 	color: var(--red);
 	text-decoration: dashed underline var(--black);
 	text-underline-offset: 0.3em;
-	font-weight: 700;
 	transition: var(--transition);
+}
+
+[data-theme="dark"] a {
+	color: var(--red-wrong);
 }
 
 a:hover {

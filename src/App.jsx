@@ -83,6 +83,7 @@ function App() {
 						quizData={quizData}
 						setQuizData={setQuizData}
 						playAgain={playAgain}
+						setScore={setScore}
 						score={score}
 						disabled={disabled}
 						setDisabled={setDisabled}

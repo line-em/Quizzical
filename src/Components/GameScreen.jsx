@@ -34,7 +34,7 @@ function GameScreen(props) {
 
 	function checkAnswers() {
 		if (props.quizData.every((question) => question.is_correct !== null)) {
-			setScore(quizData.filter((quiz) => quiz.is_correct).length);
+			props.setScore(props.quizData.filter((quiz) => quiz.is_correct).length);
 			props.setDisabled(true);
 			setQuizError(false);
 		} else {
@@ -43,7 +43,8 @@ function GameScreen(props) {
 	}
 
 	const scoreStyles = {
-		backgroundColor: props.score === props.quizData.length ? "var(--green)" : "var(--teal)",
+		backgroundColor:
+			props.score === props.quizData.length ? "var(--green)" : "var(--transparency)",
 		color: "var(--white)"
 	};
 
@@ -88,7 +89,7 @@ function GameScreen(props) {
 				</div>
 			)}
 			{props.disabled ? (
-				<button className="start-button" role="button" onClick={props.playAgain}>
+				<button className="accent-button" role="button" onClick={props.playAgain}>
 					Play Again!
 				</button>
 			) : (
