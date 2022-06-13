@@ -1,18 +1,46 @@
-import { React } from "react";
+import { React, useState } from "react";
 import QuestionBox from "../Helpers/QuestionBox";
 import Confetti from "react-dom-confetti";
 
 function GameScreen(props) {
+	const [quizError, setQuizError] = useState(false);
+
 	const quizQuestions = props.quizData.map((question) => {
 		return (
 			<QuestionBox
 				disabled={props.disabled}
-				chooseAnswer={props.chooseAnswer}
+				chooseAnswer={chooseAnswer}
 				key={question.id}
 				{...question}
 			/>
 		);
 	});
+
+	function chooseAnswer(answer, targetId) {
+		props.setQuizData(
+			quizData.map((question) => {
+				if (question.id === targetId) {
+					return {
+						...question,
+						current_answer: answer,
+						is_correct: answer === question.correct_answer
+					};
+				} else {
+					return question;
+				}
+			})
+		);
+	}
+
+	function checkAnswers() {
+		if (props.quizData.every((question) => question.is_correct !== null)) {
+			setScore(quizData.filter((quiz) => quiz.is_correct).length);
+			props.setDisabled(true);
+			setQuizError(false);
+		} else {
+			setQuizError(true);
+		}
+	}
 
 	const scoreStyles = {
 		backgroundColor: props.score === props.quizData.length ? "var(--green)" : "var(--teal)",
@@ -54,7 +82,7 @@ function GameScreen(props) {
 					</p>
 				</div>
 			)}
-			{props.quizError && (
+			{quizError && (
 				<div className="check-answers-container">
 					<h2>Please answer all questions!</h2>
 				</div>
@@ -64,7 +92,7 @@ function GameScreen(props) {
 					Play Again!
 				</button>
 			) : (
-				<button className="accent-button" role="button" onClick={props.checkAnswers}>
+				<button className="accent-button" role="button" onClick={checkAnswers}>
 					Check Answers
 				</button>
 			)}

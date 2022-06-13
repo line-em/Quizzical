@@ -14,7 +14,6 @@ function App() {
 	const [score, setScore] = useState(null);
 	const [disabled, setDisabled] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const [quizError, setQuizError] = useState(false);
 
 	if (quizData.length < 0) {
 		setGameStarted(false);
@@ -61,38 +60,11 @@ function App() {
 			});
 	}, [gameStarted]);
 
-	function chooseAnswer(answer, targetId) {
-		setQuizData(
-			quizData.map((question) => {
-				if (question.id === targetId) {
-					return {
-						...question,
-						current_answer: answer,
-						is_correct: answer === question.correct_answer
-					};
-				} else {
-					return question;
-				}
-			})
-		);
-	}
-
-	function checkAnswers() {
-		if (quizData.every((question) => question.is_correct !== null)) {
-			setScore(quizData.filter((quiz) => quiz.is_correct).length);
-			setDisabled(true);
-			setQuizError(false);
-		} else {
-			setQuizError(true);
-		}
-	}
-
 	function playAgain() {
 		setQuizData([]);
 		setGameStarted(false);
 		setScore(0);
 		setDisabled(false);
-		setQuizError(false);
 	}
 
 	return (
@@ -109,12 +81,10 @@ function App() {
 					<GameScreen
 						startGame={startGame}
 						quizData={quizData}
-						quizError={quizError}
-						chooseAnswer={chooseAnswer}
-						checkAnswers={checkAnswers}
 						playAgain={playAgain}
 						score={score}
 						disabled={disabled}
+						setDisabled={setDisabled}
 					/>
 				)}
 				<Footer />
