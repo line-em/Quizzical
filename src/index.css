@@ -14,7 +14,8 @@
 
 :root {
 	/*colors*/
-	--white: #cddde8;
+	/* --white: #cddde8; */
+	--white: #dce9f1;
 	--black: #1b355a;
 	/* --teal: #4da4a6; */
 	--teal: #1d8385;
@@ -250,6 +251,10 @@ button {
 	background: var(--red);
 }
 
+[data-theme="dark"] .start-button {
+	color: var(--black);
+}
+
 .accent-button {
 	background: var(--teal);
 }
@@ -292,6 +297,10 @@ button {
 	background: var(--green);
 	transform: translateY(0.1rem);
 	box-shadow: var(--shadow), inset var(--shadow);
+}
+
+[data-theme="dark"] .start-button:hover:enabled {
+	color: var(--white);
 }
 
 :is(.theme-button, .start-button, .git-button, .choice-button):active:enabled {

@@ -4,11 +4,13 @@ import Confetti from "react-dom-confetti";
 
 function GameScreen(props) {
 	const [quizError, setQuizError] = useState(false);
+	const [score, setScore] = useState(null);
+	const [disabled, setDisabled] = useState(false);
 
 	const quizQuestions = props.quizData.map((question) => {
 		return (
 			<QuestionBox
-				disabled={props.disabled}
+				disabled={disabled}
 				chooseAnswer={chooseAnswer}
 				key={question.id}
 				{...question}
@@ -34,17 +36,23 @@ function GameScreen(props) {
 
 	function checkAnswers() {
 		if (props.quizData.every((question) => question.is_correct !== null)) {
-			props.setScore(props.quizData.filter((quiz) => quiz.is_correct).length);
-			props.setDisabled(true);
+			setScore(props.quizData.filter((quiz) => quiz.is_correct).length);
+			setDisabled(true);
 			setQuizError(false);
 		} else {
 			setQuizError(true);
 		}
 	}
 
+	function playAgain() {
+		props.setQuizData([]);
+		props.startGame();
+		setScore(0);
+		setDisabled(false);
+	}
+
 	const scoreStyles = {
-		backgroundColor:
-			props.score === props.quizData.length ? "var(--green)" : "var(--transparency)",
+		backgroundColor: score === props.quizData.length ? "var(--green)" : "var(--transparency)",
 		color: "var(--white)"
 	};
 
@@ -75,11 +83,11 @@ function GameScreen(props) {
 					config={confettiConfig}
 				/>
 			</div>
-			{props.disabled && (
+			{disabled && (
 				<div className="check-answers-container" style={scoreStyles}>
 					<h2>Correct Answers:</h2>
 					<p>
-						{props.score} / {props.quizData.length}
+						{score} / {props.quizData.length}
 					</p>
 				</div>
 			)}
@@ -88,8 +96,8 @@ function GameScreen(props) {
 					<h2>Please answer all questions!</h2>
 				</div>
 			)}
-			{props.disabled ? (
-				<button className="accent-button" role="button" onClick={props.playAgain}>
+			{disabled ? (
+				<button className="accent-button" role="button" onClick={playAgain}>
 					Play Again!
 				</button>
 			) : (
