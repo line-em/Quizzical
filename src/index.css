@@ -146,7 +146,7 @@ main {
 /*base elements*/
 /*************************/
 
-:is(h1, h2, h3, h4, h5, h6) {
+:where(h1, h2, h3, h4, h5, h6) {
 	font-family: "Orelega One", sans-serif;
 	font-weight: 400;
 }
@@ -268,7 +268,7 @@ button {
 	color: var(--white);
 }
 
-:is(.theme-button, .git-button) {
+:where(.theme-button, .git-button) {
 	border-radius: 50%;
 	position: fixed;
 	z-index: 1;
@@ -292,7 +292,7 @@ button {
 	left: 1rem;
 }
 
-:is(.theme-button, .start-button, .choice-button, .accent-button):hover:enabled,
+:where(.theme-button, .start-button, .choice-button, .accent-button):hover:enabled,
 .git-button:hover {
 	background: var(--green);
 	transform: translateY(0.1rem);
@@ -303,7 +303,7 @@ button {
 	color: var(--white);
 }
 
-:is(.theme-button, .start-button, .git-button, .choice-button):active:enabled {
+:where(.theme-button, .start-button, .git-button, .choice-button):active:enabled {
 	background: var(--black);
 	transform: translateY(0.25rem);
 }
@@ -376,7 +376,7 @@ button:disabled {
 		width: 95%;
 	}
 
-	:is(.theme-button, .git-button) {
+	:where(.theme-button, .git-button) {
 		position: relative;
 		margin: 0 var(--deco);
 		top: auto;
