@@ -20,7 +20,8 @@ function StartScreen({ updateCustomization }) {
 		<section className="start-screen">
 			<h1>Quizzical</h1>
 			<button
-				className="accent-button start-margin"
+				className="accent-button 
+				start-margin"
 				role="button"
 				onClick={(e) => setIsCustomizationHidden(!isCustomizationHidden)}
 			>
