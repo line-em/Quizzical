@@ -10,7 +10,7 @@
   "dependencies": {
     "@uiball/loaders": "^1.2.6",
     "modern-css-reset": "^1.4.0",
-    "nanoid": "^3.3.4",
+    "nanoid": "^3.3.8",
     "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
